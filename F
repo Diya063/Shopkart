@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopKart - Flipkart Inspired E-commerce</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar for products grid */
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: #4f46e5;
+      border-radius: 3px;
+    }
+    /* Hover effect for product cards */
+    .product-card:hover {
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+      transform: translateY(-5px);
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+  <!-- Header / Navbar -->
+  <header class="bg-blue-600 text-white sticky top-0 z-50 shadow">
+    <div class="max-w-7xl mx-auto flex items-center p-3 md:p-4 justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="text-3xl font-extrabold tracking-tight">ShopKart</span>
+        <span class="hidden md:inline-block text-sm font-semibold uppercase tracking-wide opacity-80">Discover Products You Love</span>
+      </div>
+
+      <div class="flex items-center space-x-4 flex-grow max-w-xl md:max-w-3xl">
+        <input
+          type="search"
+          placeholder="Search for products, brands and more"
+          class="flex-grow px-4 py-2 rounded-l-md focus:outline-none"
+          aria-label="Search for products"
+        />
+        <button class="bg-yellow-400 hover:bg-yellow-500 px-5 py-2 rounded-r-md font-semibold text-gray-800">
+          Search
+        </button>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-6 font-semibold text-sm">
+        <a href="#" class="hover:underline">Login</a>
+        <a href="#" class="hover:underline">Wishlist</a>
+        <a href="#" class="hover:underline relative">
+          Cart
+          <span class="absolute -top-2 -right-3 bg-yellow-400 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+        </a>
+      </nav>
+
+      <button id="mobile-menu-button" class="md:hidden focus:outline-none" aria-label="Toggle mobile menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="hidden md:hidden bg-blue-700 text-white px-6 py-4 space-y-3">
+      <a href="#" class="block hover:underline">Login</a>
+      <a href="#" class="block hover:underline">Wishlist</a>
+      <a href="#" class="block hover:underline relative">
+        Cart
+        <span class="absolute -top-2 -right-10 bg-yellow-400 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto mt-6 px-4 md:px-6">
+
+    <!-- Carousel Banner -->
+    <section class="relative rounded-lg overflow-hidden shadow-lg mb-8">
+      <div class="carousel">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9e527358-7fa6-4331-8b48-51098b85f50a.png" alt="Banner showing promotion for big sale up to 50 percent off with a blue background and white text" class="w-full object-cover h-48 md:h-64" />
+      </div>
+    </section>
+
+    <!-- Categories Horizontal Scroll -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Shop by Category</h2>
+      <div class="flex space-x-6 overflow-x-auto scrollbar-thin pb-4">
+        <div class="min-w-[100px] text-center cursor-pointer">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/78bc2949-a05e-4e76-b52a-532939341497.png" alt="Category icon smartphone with blue background" class="mx-auto rounded-full shadow"/>
+          <p class="mt-2 text-sm font-medium text-gray-700">Mobiles</p>
+        </div>
+        <div class="min-w-[100px] text-center cursor-pointer">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f5f79cb0-547c-4a5f-9f30-adde613cb77c.png" alt="Category icon electronics with green background" class="mx-auto rounded-full shadow"/>
+          <p class="mt-2 text-sm font-medium text-gray-700">Electronics</p>
+        </div>
+        <div class="min-w-[100px] text-center cursor-pointer">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/eba49bf4-7a90-4f2c-93b4-35129f551e26.png" alt="Category icon clothing hanger on brown background" class="mx-auto rounded-full shadow"/>
+          <p class="mt-2 text-sm font-medium text-gray-700">Fashion</p>
+        </div>
+        <div class="min-w-[100px] text-center cursor-pointer">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2687f744-d870-4e6f-86b1-182c167bcf23.png" alt="Category icon home with pink background" class="mx-auto rounded-full shadow"/>
+          <p class="mt-2 text-sm font-medium text-gray-700">Home</p>
+        </div>
+        <div class="min-w-[100px] text-center cursor-pointer">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0b75c6fb-eb9a-4ae0-a81d-77e97c8d3f78.png" alt="Category icon beauty products with magenta background" class="mx-auto rounded-full shadow"/>
+          <p class="mt-2 text-sm font-medium text-gray-700">Beauty</p>
+        </div>
+        <div class="min-w-[100px] text-center cursor-pointer">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e39f8948-8a8b-4fcb-930e-16e70a9c952b.png" alt="Category icon appliances with purple background" class="mx-auto rounded-full shadow"/>
+          <p class="mt-2 text-sm font-medium text-gray-700">Appliances</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section>
+      <h2 class="text-xl font-semibold mb-6">Top Products</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <!-- Product Card Template -->
+        <article tabindex="0" class="bg-white rounded-lg p-3 product-card shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <img class="w-full h-48 object-contain mb-3 rounded" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51539605-7ec2-45a3-91a7-9ff2dd909a9c.png" alt="Smartphone product with sleek design displayed on neutral background" />
+          <h3 class="text-gray-900 font-medium truncate" title="Sleek Smartphone X100">Sleek Smartphone X100</h3>
+          <p class="mt-1 text-sm text-gray-600 line-through">₹25,999</p>
+          <p class="text-lg font-bold text-indigo-600">₹19,999</p>
+          <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 w-full py-2 rounded-md text-gray-900 font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-500">Add to Cart</button>
+        </article>
+
+        <article tabindex="0" class="bg-white rounded-lg p-3 product-card shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <img class="w-full h-48 object-contain mb-3 rounded" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d1452391-0174-4739-b2aa-290417643899.png" alt="Wireless headphones in black color with modern design shown on white surface" />
+          <h3 class="text-gray-900 font-medium truncate" title="Noise Cancelling Headphones Pro">Noise Cancelling Headphones Pro</h3>
+          <p class="mt-1 text-sm text-gray-600 line-through">₹9,999</p>
+          <p class="text-lg font-bold text-indigo-600">₹7,499</p>
+          <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 w-full py-2 rounded-md text-gray-900 font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-500">Add to Cart</button>
+        </article>
+
+        <article tabindex="0" class="bg-white rounded-lg p-3 product-card shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <img class="w-full h-48 object-contain mb-3 rounded" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c4c0a20d-8ad7-474d-af0e-724539ab6061.png" alt="Smartwatch with black strap and touch screen displayed on light background" />
+          <h3 class="text-gray-900 font-medium truncate" title="Smartwatch Series 5">Smartwatch Series 5</h3>
+          <p class="mt-1 text-sm text-gray-600 line-through">₹15,500</p>
+          <p class="text-lg font-bold text-indigo-600">₹12,999</p>
+          <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 w-full py-2 rounded-md text-gray-900 font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-500">Add to Cart</button>
+        </article>
+
+        <article tabindex="0" class="bg-white rounded-lg p-3 product-card shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <img class="w-full h-48 object-contain mb-3 rounded" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/771ecfee-3da8-4a61-9f9e-698f2bc287de.png" alt="Elegant red dress with flowing fabric on a mannequin" />
+          <h3 class="text-gray-900 font-medium truncate" title="Elegant Evening Dress">Elegant Evening Dress</h3>
+          <p class="mt-1 text-sm text-gray-600 line-through">₹6,499</p>
+          <p class="text-lg font-bold text-indigo-600">₹4,999</p>
+          <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 w-full py-2 rounded-md text-gray-900 font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-500">Add to Cart</button>
+        </article>
+
+        <article tabindex="0" class="bg-white rounded-lg p-3 product-card shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <img class="w-full h-48 object-contain mb-3 rounded" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9e3aca95-4f7f-4659-ae6a-ed7b85fe871b.png" alt="Large stainless steel refrigerator with double doors standing in kitchen" />
+          <h3 class="text-gray-900 font-medium truncate" title="Double Door Refrigerator 250L">Double Door Refrigerator 250L</h3>
+          <p class="mt-1 text-sm text-gray-600 line-through">₹28,000</p>
+          <p class="text-lg font-bold text-indigo-600">₹24,500</p>
+          <button class="mt-3 bg-yellow-400 hover:bg-yellow-500 w-full py-2 rounded-md text-gray-900 font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-500">Add to Cart</button>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white mt-12">
+    <div class="max-w-7xl mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="text-lg font-semibold mb-4">ShopKart</h4>
+        <p>Your one-stop shop for quality products at unbeatable prices. Experience the joy of easy shopping with fast delivery and excellent support.</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:underline">About Us</a></li>
+          <li><a href="#" class="hover:underline">Careers</a></li>
+          <li><a href="#" class="hover:underline">Press</a></li>
+          <li><a href="#" class="hover:underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Support</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:underline">Help Center</a></li>
+          <li><a href="#" class="hover:underline">Returns</a></li>
+          <li><a href="#" class="hover:underline">Product Recalls</a></li>
+          <li><a href="#" class="hover:underline">Accessibility</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:underline">Facebook</a>
+          <a href="#" class="hover:underline">Twitter</a>
+          <a href="#" class="hover:underline">Instagram</a>
+          <a href="#" class="hover:underline">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-blue-800 py-4 text-center text-sm opacity-80">
+      © 2024 ShopKart, All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
